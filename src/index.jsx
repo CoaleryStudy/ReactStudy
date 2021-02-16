@@ -1,13 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Hello from './hello';
+import React from "react";
+import ReactDOM from "react-dom";
+import Counter from "./counter";
 
 function App() {
-  return (
-    <div>
-      <Hello msg="안녕하세요" />
-    </div>
-  );
+  return <Counter />;
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById("root"));
