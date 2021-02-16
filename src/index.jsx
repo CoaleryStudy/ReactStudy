@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Counter from "./counter";
+import InputSample from "./InputSample";
 
 function App() {
-  return <Counter />;
+  return <InputSample />;
 }
 
 ReactDOM.render(<App />, document.getElementById("root"));
