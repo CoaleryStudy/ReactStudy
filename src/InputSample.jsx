@@ -1,22 +1,60 @@
 import React, { useState } from "react";
 
 function InputSample() {
-  const [text, setText] = useState("");
+  const [inputs, setInputs] = useState({
+    id: "",
+    password: "",
+  });
 
-  const onRemove = () => {
-    setText("");
+  const { id, password } = inputs;
+
+  const onReset = () => {
+    setInputs({
+      id: "",
+      password: "",
+    });
   };
 
   const onChange = (event) => {
-    setText(event.target.value);
+    // 1
+    // if (event.target.name === "id") {
+    //   setInputs({
+    //     id: event.target.value,
+    //     password: password,
+    //   });
+    // } else {
+    //   setInputs({
+    //     id: id,
+    //     password: event.target.value,
+    //   });
+    // }
+
+    // 2
+    setInputs({
+      ...inputs,
+      [event.target.name]: event.target.value,
+    });
   };
 
   return (
     <div>
-      <input onChange={onChange} value={text} />
-      <button onClick={onRemove}>초기화</button>
+      <input
+        name="id"
+        onChange={onChange}
+        placeholder="아이디 입력"
+        value={id}
+      />
+      <input
+        name="password"
+        type="password"
+        onChange={onChange}
+        placeholder="비밀번호 입력"
+        value={password}
+      />
+      <button onClick={onReset}>초기화</button>
       <div>
-        <b>값 : {text}</b>
+        <div>아이디 : {id}</div>
+        <div>비밀번호 : {password}</div>
       </div>
     </div>
   );
