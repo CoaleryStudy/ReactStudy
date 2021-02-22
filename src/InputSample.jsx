@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 function InputSample() {
   const [inputs, setInputs] = useState({
     id: "",
     password: "",
   });
+  const nameInput = useRef();
 
   const { id, password } = inputs;
 
@@ -13,27 +14,28 @@ function InputSample() {
       id: "",
       password: "",
     });
+    nameInput.current.focus();
   };
 
   const onChange = (event) => {
     // 1
-    // if (event.target.name === "id") {
-    //   setInputs({
-    //     id: event.target.value,
-    //     password: password,
-    //   });
-    // } else {
-    //   setInputs({
-    //     id: id,
-    //     password: event.target.value,
-    //   });
-    // }
+    if (event.target.name === "id") {
+      setInputs({
+        id: event.target.value,
+        password: password,
+      });
+    } else {
+      setInputs({
+        id: id,
+        password: event.target.value,
+      });
+    }
 
     // 2
-    setInputs({
-      ...inputs,
-      [event.target.name]: event.target.value,
-    });
+    // setInputs({
+    //   ...inputs,
+    //   [event.target.name]: event.target.value,
+    // });
   };
 
   return (
@@ -43,6 +45,7 @@ function InputSample() {
         onChange={onChange}
         placeholder="아이디 입력"
         value={id}
+        ref={nameInput}
       />
       <input
         name="password"
