@@ -1,4 +1,4 @@
-import React, { useRef, useState, useMemo } from "react";
+import React, { useRef, useState, useMemo, useCallback } from "react";
 import CreateUser from "./CreateUser";
 import UserList from "./UserList";
 
@@ -13,13 +13,16 @@ function App() {
     email: "",
   });
   const { username, email } = inputs;
-  const onChange = (event) => {
-    const { name, value } = event.target;
-    setInputs({
-      ...inputs,
-      [name]: value,
-    });
-  };
+  const onChange = useCallback(
+    (event) => {
+      const { name, value } = event.target;
+      setInputs({
+        ...inputs,
+        [name]: value,
+      });
+    },
+    [inputs],
+  );
 
   const [users, setUsers] = useState([
     {
@@ -43,41 +46,50 @@ function App() {
   ]);
 
   const nextId = useRef(4);
-  const onCreate = () => {
-    const newUser = {
-      id: nextId.current,
-      username: username,
-      email: email,
-      active: false,
-    };
+  const onCreate = useCallback(
+    () => {
+      const newUser = {
+        id: nextId.current,
+        username: username,
+        email: email,
+        active: false,
+      };
+  
+      setUsers(users.concat(newUser));
+  
+      setInputs({
+        username: "",
+        email: "",
+      });
+      nextId.current += 1;
+    },
+    [users, username, email]
+  );
 
-    setUsers(users.concat(newUser));
+  const onRemove = useCallback(
+    (id) => {
+      setUsers(users.filter((user) => user.id !== id));
+    },
+    [users],
+  );
 
-    setInputs({
-      username: "",
-      email: "",
-    });
-    nextId.current += 1;
-  };
-
-  const onRemove = (id) => {
-    setUsers(users.filter((user) => user.id !== id));
-  };
-
-  const onToggle = (id) => {
-    setUsers(
-      users.map((user) => {
-        if (user.id === id) {
-          return {
-            ...user,
-            active: !user.active,
-          };
-        } else {
-          return user;
-        }
-      })
-    );
-  };
+  const onToggle = useCallback(
+    (id) => {
+      setUsers(
+        users.map((user) => {
+          if (user.id === id) {
+            return {
+              ...user,
+              active: !user.active,
+            };
+          } else {
+            return user;
+          }
+        })
+      );
+    },
+    [users]
+  );
 
   const count = useMemo(() => countActiveUserse(users), [users]);
   return (
