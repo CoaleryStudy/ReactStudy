@@ -1,10 +1,9 @@
-import React, { useReducer, useMemo } from "react";
-import CreateUser from "./CreateUser";
-import UserList from "./UserList";
-import produce from "immer";
+import React, { useReducer, useMemo } from 'react';
+import produce from 'immer';
+import CreateUser from './CreateUser';
+import UserList from './UserList';
 
 function countActiveUsers(users) {
-  console.log("활성 사용자 수를 세는 중");
   return users.filter((user) => user.active).length;
 }
 
@@ -12,20 +11,20 @@ const initialState = {
   users: [
     {
       id: 1,
-      username: "velopert",
-      email: "public.velopert@gmail.com",
+      username: 'velopert',
+      email: 'public.velopert@gmail.com',
       active: true,
     },
     {
       id: 2,
-      username: "tester",
-      email: "tester@example.com",
+      username: 'tester',
+      email: 'tester@example.com',
       active: false,
     },
     {
       id: 3,
-      username: "liz",
-      email: "liz@example.com",
+      username: 'liz',
+      email: 'liz@example.com',
       active: false,
     },
   ],
@@ -33,18 +32,18 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
-    case "CREATE_USER":
+    case 'CREATE_USER':
       return produce(state, (draft) => {
         draft.users.push(action.user);
       });
-    case "TOGGLE_USER":
+    case 'TOGGLE_USER':
       return produce(state, (draft) => {
-        const user = draft.users.find(user => user.id === action.id);
-        user.active = !user.active;
+        const targetUser = draft.users.find((user) => user.id === action.id);
+        targetUser.active = !targetUser.active;
       });
-    case "REMOVE_USER":
+    case 'REMOVE_USER':
       return produce(state, (draft) => {
-        const index = draft.users.findIndex(user => user.id === action.id);
+        const index = draft.users.findIndex((user) => user.id === action.id);
         draft.users.splice(index, 1);
       });
     default:
@@ -56,7 +55,7 @@ export const UserDispatch = React.createContext(null);
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  
+
   const { users } = state;
 
   const count = useMemo(() => countActiveUsers(users), [users]);

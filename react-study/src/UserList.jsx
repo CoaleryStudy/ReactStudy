@@ -9,7 +9,7 @@ function User({ user }) {
       <b
         style={{
           cursor: 'pointer',
-          color: user.active ? 'green' : 'black'
+          color: user.active ? 'green' : 'black',
         }}
         onClick={() => {
           dispatch({ type: 'TOGGLE_USER', id: user.id });
@@ -18,9 +18,14 @@ function User({ user }) {
         {user.username}
       </b>
       <span> ({user.email})</span>
-      <button onClick={() => {
-        dispatch({ type: 'REMOVE_USER', id: user.id });
-      }}>삭제</button>
+      <button
+        type="button"
+        onClick={() => {
+          dispatch({ type: 'REMOVE_USER', id: user.id });
+        }}
+      >
+        삭제
+      </button>
     </div>
   );
 }
