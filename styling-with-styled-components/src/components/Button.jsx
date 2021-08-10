@@ -46,7 +46,7 @@ const sizes = {
 const sizeStyles = css`
   ${({ size }) => css`
     height: ${sizes[size].height};
-    font-size: ${sizes[size].fontsize};
+    font-size: ${sizes[size].fontSize};
   `}
 `;
 
@@ -56,7 +56,7 @@ const fullWidthStyle = css`
     css`
       width: 100%;
       justify-content: center;
-      & + & {
+      &:not(:first-child) {
         margin-left: 0;
         margin-top: 1rem;
       }
@@ -80,7 +80,7 @@ const StyledButton = styled.button`
 
   /* Color */
   ${colorStyles}
-
+  
   /* Etc. */
   & + & {
     margin-left: 1rem;
@@ -106,6 +106,7 @@ function Button({ children, color, size, outline, fullWidth, ...rest }) {
 Button.defaultProps = {
   color: 'blue',
   size: 'medium',
+  fullWidth: false,
 };
 
 export default Button;
