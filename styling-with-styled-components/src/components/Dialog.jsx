@@ -35,7 +35,7 @@ const slideDown = keyframes`
     transform: translateY(0px);
   }
   to {
-    transfomr: translateY(200px);
+    transform: translateY(200px);
   }
 `;
 
