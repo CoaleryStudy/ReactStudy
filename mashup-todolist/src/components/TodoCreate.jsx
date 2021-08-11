@@ -20,7 +20,7 @@ function InsertForm({ children }) {
   return <form className="insert-form">{children}</form>;
 }
 
-function Input({ autoFocus, placeholder }) {
+function Input({ placeholder }) {
   return <input className="input" placeholder={placeholder} autoFocus></input>;
 }
 
