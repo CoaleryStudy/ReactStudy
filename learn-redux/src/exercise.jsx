@@ -59,6 +59,7 @@ const listener = () => {
   console.log(state);
 };
 
+// eslint-disable-next-line no-unused-vars
 const unsubscribe = store.subscribe(listener);
 
 store.dispatch(increase());
