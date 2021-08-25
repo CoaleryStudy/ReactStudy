@@ -52,7 +52,7 @@ export const handleAsyncActions = (type, key, keepData = false) => {
       case ERROR:
         return {
           ...state,
-          [key]: reducerUtils.error(action.paylaod),
+          [key]: reducerUtils.error(action.payload),
         };
       default:
         return state;
@@ -70,7 +70,7 @@ export const createPromiseThunkById = (
 
   return (param) => async (dispatch) => {
     const id = idSelector(param);
-    dispatch({ type, meta: id });
+    dispatch({ type, param, meta: id });
     try {
       const payload = await promiseCreator(param);
       dispatch({ type: SUCCESS, payload, meta: id });
