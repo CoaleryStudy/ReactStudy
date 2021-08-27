@@ -1,0 +1,18 @@
+.box {
+  width: 260px;
+  height: 260px;
+  margin: 64px auto;
+  padding: 1rem;
+  justify-content: center;
+  box-shadow: 1px 1px 5px 1px rgba($color: #000000, $alpha: 0.3);
+  border-radius: 8px;
+}
+
+.someButton {
+  width: 100%;
+}
+
+.alert {
+  margin-top: 0.5rem;
+  text-align: center;
+}
