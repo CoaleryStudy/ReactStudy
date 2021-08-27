@@ -13,7 +13,11 @@ import App from './App';
 import rootReducer, { rootSaga } from './modules';
 
 const customHistory = createBrowserHistory();
-const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware({
+  context: {
+    history: customHistory
+  }
+});
 
 const store = createStore(
   rootReducer,
