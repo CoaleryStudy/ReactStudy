@@ -3,6 +3,7 @@ import Counter from './Counter';
 import CounterWithReducer from './CounterWithReducer';
 import Greetings from './Greetings';
 import MyForm, { FormData } from './MyForm';
+import ReducerSample from './ReducerSample';
 
 function App() {
   const onClick = (name: string) => {
@@ -19,6 +20,7 @@ function App() {
       <Counter />
       <CounterWithReducer />
       <MyForm onSubmit={onSubmit} />
+      <ReducerSample />
     </>
   );
 }
