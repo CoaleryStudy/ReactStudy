@@ -1,5 +1,6 @@
 import React from 'react';
 import Counter from './Counter';
+import CounterWithReducer from './CounterWithReducer';
 import Greetings from './Greetings';
 import MyForm, { FormData } from './MyForm';
 
@@ -16,6 +17,7 @@ function App() {
     <>
       <Greetings name="World" onClick={onClick} />
       <Counter />
+      <CounterWithReducer />
       <MyForm onSubmit={onSubmit} />
     </>
   );
